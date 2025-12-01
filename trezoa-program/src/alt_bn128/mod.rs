@@ -312,7 +312,7 @@ mod target_arch {
         }
         let mut result_buffer = [0; ALT_BN128_ADDITION_OUTPUT_LEN];
         let result = unsafe {
-            crate::syscalls::sol_alt_bn128_group_op(
+            crate::syscalls::trz_alt_bn128_group_op(
                 ALT_BN128_ADD,
                 input as *const _ as *const u8,
                 input.len() as u64,
@@ -332,7 +332,7 @@ mod target_arch {
         }
         let mut result_buffer = [0u8; ALT_BN128_POINT_SIZE];
         let result = unsafe {
-            crate::syscalls::sol_alt_bn128_group_op(
+            crate::syscalls::trz_alt_bn128_group_op(
                 ALT_BN128_MUL,
                 input as *const _ as *const u8,
                 input.len() as u64,
@@ -356,7 +356,7 @@ mod target_arch {
         }
         let mut result_buffer = [0u8; 32];
         let result = unsafe {
-            crate::syscalls::sol_alt_bn128_group_op(
+            crate::syscalls::trz_alt_bn128_group_op(
                 ALT_BN128_PAIRING,
                 input as *const _ as *const u8,
                 input.len() as u64,

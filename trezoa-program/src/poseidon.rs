@@ -258,7 +258,7 @@ pub fn hashv(
     {
         let mut hash_result = [0; HASH_BYTES];
         let result = unsafe {
-            crate::syscalls::sol_poseidon(
+            crate::syscalls::trz_poseidon(
                 parameters.into(),
                 endianness.into(),
                 vals as *const _ as *const u8,

@@ -48,5 +48,5 @@ crate::declare_sysvar_id!(
 );
 
 impl Sysvar for LastRestartSlot {
-    impl_sysvar_get!(sol_get_last_restart_slot);
+    impl_sysvar_get!(trz_get_last_restart_slot);
 }

@@ -3,7 +3,7 @@
 use {
     crate::{
         clock::Epoch, debug_account_data::*, entrypoint::MAX_PERMITTED_DATA_INCREASE,
-        program_error::ProgramError, program_memory::sol_memset, pubkey::Pubkey,
+        program_error::ProgramError, program_memory::trz_memset, pubkey::Pubkey,
     },
     std::{
         cell::{Ref, RefCell, RefMut},
@@ -175,7 +175,7 @@ impl<'a> AccountInfo<'a> {
         if zero_init {
             let len_increase = new_len.saturating_sub(old_len);
             if len_increase > 0 {
-                sol_memset(&mut data[old_len..], 0, len_increase);
+                trz_memset(&mut data[old_len..], 0, len_increase);
             }
         }
 

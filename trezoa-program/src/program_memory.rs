@@ -32,14 +32,14 @@
 /// Specifying an `n` greater than either the length of `dst` or `src` will
 /// likely introduce undefined behavior.
 #[inline]
-pub fn sol_memcpy(dst: &mut [u8], src: &[u8], n: usize) {
+pub fn trz_memcpy(dst: &mut [u8], src: &[u8], n: usize) {
     #[cfg(target_os = "trezoa")]
     unsafe {
-        crate::syscalls::sol_memcpy_(dst.as_mut_ptr(), src.as_ptr(), n as u64);
+        crate::syscalls::trz_memcpy_(dst.as_mut_ptr(), src.as_ptr(), n as u64);
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_memcpy(dst.as_mut_ptr(), src.as_ptr(), n);
+    crate::program_stubs::trz_memcpy(dst.as_mut_ptr(), src.as_ptr(), n);
 }
 
 /// Like C `memmove`.
@@ -62,12 +62,12 @@ pub fn sol_memcpy(dst: &mut [u8], src: &[u8], n: usize) {
 ///
 /// [`ptr::copy`]: https://doc.rust-lang.org/std/ptr/fn.copy.html
 #[inline]
-pub unsafe fn sol_memmove(dst: *mut u8, src: *mut u8, n: usize) {
+pub unsafe fn trz_memmove(dst: *mut u8, src: *mut u8, n: usize) {
     #[cfg(target_os = "trezoa")]
-    crate::syscalls::sol_memmove_(dst, src, n as u64);
+    crate::syscalls::trz_memmove_(dst, src, n as u64);
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_memmove(dst, src, n);
+    crate::program_stubs::trz_memmove(dst, src, n);
 }
 
 /// Like C `memcmp`.
@@ -95,16 +95,16 @@ pub unsafe fn sol_memmove(dst: *mut u8, src: *mut u8, n: usize) {
 /// Specifying an `n` greater than either the length of `dst` or `src` will
 /// likely introduce undefined behavior.
 #[inline]
-pub fn sol_memcmp(s1: &[u8], s2: &[u8], n: usize) -> i32 {
+pub fn trz_memcmp(s1: &[u8], s2: &[u8], n: usize) -> i32 {
     let mut result = 0;
 
     #[cfg(target_os = "trezoa")]
     unsafe {
-        crate::syscalls::sol_memcmp_(s1.as_ptr(), s2.as_ptr(), n as u64, &mut result as *mut i32);
+        crate::syscalls::trz_memcmp_(s1.as_ptr(), s2.as_ptr(), n as u64, &mut result as *mut i32);
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_memcmp(s1.as_ptr(), s2.as_ptr(), n, &mut result as *mut i32);
+    crate::program_stubs::trz_memcmp(s1.as_ptr(), s2.as_ptr(), n, &mut result as *mut i32);
 
     result
 }
@@ -134,12 +134,12 @@ pub fn sol_memcmp(s1: &[u8], s2: &[u8], n: usize) -> i32 {
 /// Specifying an `n` greater than the length of `s` will likely introduce
 /// undefined behavior.
 #[inline]
-pub fn sol_memset(s: &mut [u8], c: u8, n: usize) {
+pub fn trz_memset(s: &mut [u8], c: u8, n: usize) {
     #[cfg(target_os = "trezoa")]
     unsafe {
-        crate::syscalls::sol_memset_(s.as_mut_ptr(), c, n as u64);
+        crate::syscalls::trz_memset_(s.as_mut_ptr(), c, n as u64);
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_memset(s.as_mut_ptr(), c, n);
+    crate::program_stubs::trz_memset(s.as_mut_ptr(), c, n);
 }

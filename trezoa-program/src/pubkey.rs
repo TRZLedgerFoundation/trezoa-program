@@ -521,7 +521,7 @@ impl Pubkey {
             let mut bytes = [0; 32];
             let mut bump_seed = std::u8::MAX;
             let result = unsafe {
-                crate::syscalls::sol_try_find_program_address(
+                crate::syscalls::trz_try_find_program_address(
                     seeds as *const _ as *const u8,
                     seeds.len() as u64,
                     program_id as *const _ as *const u8,
@@ -613,7 +613,7 @@ impl Pubkey {
         {
             let mut bytes = [0; 32];
             let result = unsafe {
-                crate::syscalls::sol_create_program_address(
+                crate::syscalls::trz_create_program_address(
                     seeds as *const _ as *const u8,
                     seeds.len() as u64,
                     program_id as *const _ as *const u8,
@@ -639,11 +639,11 @@ impl Pubkey {
     pub fn log(&self) {
         #[cfg(target_os = "trezoa")]
         unsafe {
-            crate::syscalls::sol_log_pubkey(self.as_ref() as *const _ as *const u8)
+            crate::syscalls::trz_log_pubkey(self.as_ref() as *const _ as *const u8)
         };
 
         #[cfg(not(target_os = "trezoa"))]
-        crate::program_stubs::sol_log(&self.to_string());
+        crate::program_stubs::trz_log(&self.to_string());
     }
 }
 

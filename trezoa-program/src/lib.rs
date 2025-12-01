@@ -121,17 +121,17 @@
 //! [cc]: https://doc.rust-lang.org/reference/conditional-compilation.html
 //!
 //! ```
-//! pub fn sol_log(message: &str) {
+//! pub fn trz_log(message: &str) {
 //!     #[cfg(target_os = "trezoa")]
 //!     unsafe {
-//!         sol_log_(message.as_ptr(), message.len() as u64);
+//!         trz_log_(message.as_ptr(), message.len() as u64);
 //!     }
 //!
 //!     #[cfg(not(target_os = "trezoa"))]
-//!     program_stubs::sol_log(message);
+//!     program_stubs::trz_log(message);
 //! }
 //! # mod program_stubs {
-//! #     pub(crate) fn sol_log(message: &str) { }
+//! #     pub(crate) fn trz_log(message: &str) { }
 //! # }
 //! ```
 //!
@@ -169,8 +169,8 @@
 //!   passing it a set of accounts and program-specific data.
 //! - [`ProgramError`] and [`ProgramResult`] &mdash; The error type that all programs
 //!   must return, reported to the runtime as a `u64`.
-//! - [`Sol`] &mdash; The Trezoa native token type, with conversions to and from
-//!   [_lamports_], the smallest fractional unit of SOL, in the [`native_token`]
+//! - [`Trz`] &mdash; The Trezoa native token type, with conversions to and from
+//!   [_lamports_], the smallest fractional unit of TRZ, in the [`native_token`]
 //!   module.
 //!
 //! [acc]: https://trezoa.io/docs/core/accounts
@@ -183,7 +183,7 @@
 //! [ed25519]: https://ed25519.cr.yp.to/
 //! [`Keypair`]: https://docs.rs/trezoa-sdk/latest/trezoa_sdk/signer/keypair/struct.Keypair.html
 //! [SHA-256]: https://en.wikipedia.org/wiki/SHA-2
-//! [`Sol`]: native_token::Sol
+//! [`Trz`]: native_token::Trz
 //! [_lamports_]: https://trezoa.io/docs/intro#what-are-sols
 //!
 //! # Serialization

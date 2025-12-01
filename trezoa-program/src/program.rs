@@ -295,7 +295,7 @@ pub fn invoke_signed_unchecked(
     {
         let instruction = StableInstruction::from(instruction.clone());
         let result = unsafe {
-            crate::syscalls::sol_invoke_signed_rust(
+            crate::syscalls::trz_invoke_signed_rust(
                 &instruction as *const _ as *const u8,
                 account_infos as *const _ as *const u8,
                 account_infos.len() as u64,
@@ -310,7 +310,7 @@ pub fn invoke_signed_unchecked(
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_invoke_signed(instruction, account_infos, signers_seeds)
+    crate::program_stubs::trz_invoke_signed(instruction, account_infos, signers_seeds)
 }
 
 /// Maximum size that can be set using [`set_return_data`].
@@ -326,11 +326,11 @@ pub const MAX_RETURN_DATA: usize = 1024;
 pub fn set_return_data(data: &[u8]) {
     #[cfg(target_os = "trezoa")]
     unsafe {
-        crate::syscalls::sol_set_return_data(data.as_ptr(), data.len() as u64)
+        crate::syscalls::trz_set_return_data(data.as_ptr(), data.len() as u64)
     };
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_set_return_data(data)
+    crate::program_stubs::trz_set_return_data(data)
 }
 
 /// Get the return data from an invoked program.
@@ -371,7 +371,7 @@ pub fn get_return_data() -> Option<(Pubkey, Vec<u8>)> {
         let mut program_id = Pubkey::default();
 
         let size = unsafe {
-            crate::syscalls::sol_get_return_data(
+            crate::syscalls::trz_get_return_data(
                 buf.as_mut_ptr(),
                 buf.len() as u64,
                 &mut program_id,
@@ -387,7 +387,7 @@ pub fn get_return_data() -> Option<(Pubkey, Vec<u8>)> {
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_get_return_data()
+    crate::program_stubs::trz_get_return_data()
 }
 
 /// Do sanity checks of type layout.

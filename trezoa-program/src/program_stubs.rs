@@ -24,45 +24,45 @@ pub fn set_syscall_stubs(syscall_stubs: Box<dyn SyscallStubs>) -> Box<dyn Syscal
 
 #[allow(clippy::arithmetic_side_effects)]
 pub trait SyscallStubs: Sync + Send {
-    fn sol_log(&self, message: &str) {
+    fn trz_log(&self, message: &str) {
         println!("{message}");
     }
-    fn sol_log_compute_units(&self) {
-        sol_log("SyscallStubs: sol_log_compute_units() not available");
+    fn trz_log_compute_units(&self) {
+        trz_log("SyscallStubs: trz_log_compute_units() not available");
     }
-    fn sol_remaining_compute_units(&self) -> u64 {
-        sol_log("SyscallStubs: sol_remaining_compute_units() defaulting to 0");
+    fn trz_remaining_compute_units(&self) -> u64 {
+        trz_log("SyscallStubs: trz_remaining_compute_units() defaulting to 0");
         0
     }
-    fn sol_invoke_signed(
+    fn trz_invoke_signed(
         &self,
         _instruction: &Instruction,
         _account_infos: &[AccountInfo],
         _signers_seeds: &[&[&[u8]]],
     ) -> ProgramResult {
-        sol_log("SyscallStubs: sol_invoke_signed() not available");
+        trz_log("SyscallStubs: trz_invoke_signed() not available");
         Ok(())
     }
-    fn sol_get_clock_sysvar(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_clock_sysvar(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
-    fn sol_get_epoch_schedule_sysvar(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_epoch_schedule_sysvar(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
-    fn sol_get_fees_sysvar(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_fees_sysvar(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
-    fn sol_get_rent_sysvar(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_rent_sysvar(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
-    fn sol_get_epoch_rewards_sysvar(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_epoch_rewards_sysvar(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
-    fn sol_get_last_restart_slot(&self, _var_addr: *mut u8) -> u64 {
+    fn trz_get_last_restart_slot(&self, _var_addr: *mut u8) -> u64 {
         UNSUPPORTED_SYSVAR
     }
     /// # Safety
-    unsafe fn sol_memcpy(&self, dst: *mut u8, src: *const u8, n: usize) {
+    unsafe fn trz_memcpy(&self, dst: *mut u8, src: *const u8, n: usize) {
         // cannot be overlapping
         assert!(
             is_nonoverlapping(src as usize, n, dst as usize, n),
@@ -71,11 +71,11 @@ pub trait SyscallStubs: Sync + Send {
         std::ptr::copy_nonoverlapping(src, dst, n);
     }
     /// # Safety
-    unsafe fn sol_memmove(&self, dst: *mut u8, src: *const u8, n: usize) {
+    unsafe fn trz_memmove(&self, dst: *mut u8, src: *const u8, n: usize) {
         std::ptr::copy(src, dst, n);
     }
     /// # Safety
-    unsafe fn sol_memcmp(&self, s1: *const u8, s2: *const u8, n: usize, result: *mut i32) {
+    unsafe fn trz_memcmp(&self, s1: *const u8, s2: *const u8, n: usize, result: *mut i32) {
         let mut i = 0;
         while i < n {
             let a = *s1.add(i);
@@ -89,26 +89,26 @@ pub trait SyscallStubs: Sync + Send {
         *result = 0
     }
     /// # Safety
-    unsafe fn sol_memset(&self, s: *mut u8, c: u8, n: usize) {
+    unsafe fn trz_memset(&self, s: *mut u8, c: u8, n: usize) {
         let s = std::slice::from_raw_parts_mut(s, n);
         for val in s.iter_mut().take(n) {
             *val = c;
         }
     }
-    fn sol_get_return_data(&self) -> Option<(Pubkey, Vec<u8>)> {
+    fn trz_get_return_data(&self) -> Option<(Pubkey, Vec<u8>)> {
         None
     }
-    fn sol_set_return_data(&self, _data: &[u8]) {}
-    fn sol_log_data(&self, fields: &[&[u8]]) {
+    fn trz_set_return_data(&self, _data: &[u8]) {}
+    fn trz_log_data(&self, fields: &[&[u8]]) {
         println!(
             "data: {}",
             fields.iter().map(|v| BASE64_STANDARD.encode(v)).join(" ")
         );
     }
-    fn sol_get_processed_sibling_instruction(&self, _index: usize) -> Option<Instruction> {
+    fn trz_get_processed_sibling_instruction(&self, _index: usize) -> Option<Instruction> {
         None
     }
-    fn sol_get_stack_height(&self) -> u64 {
+    fn trz_get_stack_height(&self) -> u64 {
         0
     }
 }
@@ -116,25 +116,25 @@ pub trait SyscallStubs: Sync + Send {
 struct DefaultSyscallStubs {}
 impl SyscallStubs for DefaultSyscallStubs {}
 
-pub(crate) fn sol_log(message: &str) {
-    SYSCALL_STUBS.read().unwrap().sol_log(message);
+pub(crate) fn trz_log(message: &str) {
+    SYSCALL_STUBS.read().unwrap().trz_log(message);
 }
 
-pub(crate) fn sol_log_64(arg1: u64, arg2: u64, arg3: u64, arg4: u64, arg5: u64) {
-    sol_log(&format!(
+pub(crate) fn trz_log_64(arg1: u64, arg2: u64, arg3: u64, arg4: u64, arg5: u64) {
+    trz_log(&format!(
         "{arg1:#x}, {arg2:#x}, {arg3:#x}, {arg4:#x}, {arg5:#x}"
     ));
 }
 
-pub(crate) fn sol_log_compute_units() {
-    SYSCALL_STUBS.read().unwrap().sol_log_compute_units();
+pub(crate) fn trz_log_compute_units() {
+    SYSCALL_STUBS.read().unwrap().trz_log_compute_units();
 }
 
-pub(crate) fn sol_remaining_compute_units() -> u64 {
-    SYSCALL_STUBS.read().unwrap().sol_remaining_compute_units()
+pub(crate) fn trz_remaining_compute_units() -> u64 {
+    SYSCALL_STUBS.read().unwrap().trz_remaining_compute_units()
 }
 
-pub(crate) fn sol_invoke_signed(
+pub(crate) fn trz_invoke_signed(
     instruction: &Instruction,
     account_infos: &[AccountInfo],
     signers_seeds: &[&[&[u8]]],
@@ -142,87 +142,87 @@ pub(crate) fn sol_invoke_signed(
     SYSCALL_STUBS
         .read()
         .unwrap()
-        .sol_invoke_signed(instruction, account_infos, signers_seeds)
+        .trz_invoke_signed(instruction, account_infos, signers_seeds)
 }
 
-pub(crate) fn sol_get_clock_sysvar(var_addr: *mut u8) -> u64 {
-    SYSCALL_STUBS.read().unwrap().sol_get_clock_sysvar(var_addr)
+pub(crate) fn trz_get_clock_sysvar(var_addr: *mut u8) -> u64 {
+    SYSCALL_STUBS.read().unwrap().trz_get_clock_sysvar(var_addr)
 }
 
-pub(crate) fn sol_get_epoch_schedule_sysvar(var_addr: *mut u8) -> u64 {
+pub(crate) fn trz_get_epoch_schedule_sysvar(var_addr: *mut u8) -> u64 {
     SYSCALL_STUBS
         .read()
         .unwrap()
-        .sol_get_epoch_schedule_sysvar(var_addr)
+        .trz_get_epoch_schedule_sysvar(var_addr)
 }
 
-pub(crate) fn sol_get_fees_sysvar(var_addr: *mut u8) -> u64 {
-    SYSCALL_STUBS.read().unwrap().sol_get_fees_sysvar(var_addr)
+pub(crate) fn trz_get_fees_sysvar(var_addr: *mut u8) -> u64 {
+    SYSCALL_STUBS.read().unwrap().trz_get_fees_sysvar(var_addr)
 }
 
-pub(crate) fn sol_get_rent_sysvar(var_addr: *mut u8) -> u64 {
-    SYSCALL_STUBS.read().unwrap().sol_get_rent_sysvar(var_addr)
+pub(crate) fn trz_get_rent_sysvar(var_addr: *mut u8) -> u64 {
+    SYSCALL_STUBS.read().unwrap().trz_get_rent_sysvar(var_addr)
 }
 
-pub(crate) fn sol_get_last_restart_slot(var_addr: *mut u8) -> u64 {
+pub(crate) fn trz_get_last_restart_slot(var_addr: *mut u8) -> u64 {
     SYSCALL_STUBS
         .read()
         .unwrap()
-        .sol_get_last_restart_slot(var_addr)
+        .trz_get_last_restart_slot(var_addr)
 }
 
-pub(crate) fn sol_memcpy(dst: *mut u8, src: *const u8, n: usize) {
+pub(crate) fn trz_memcpy(dst: *mut u8, src: *const u8, n: usize) {
     unsafe {
-        SYSCALL_STUBS.read().unwrap().sol_memcpy(dst, src, n);
+        SYSCALL_STUBS.read().unwrap().trz_memcpy(dst, src, n);
     }
 }
 
-pub(crate) fn sol_memmove(dst: *mut u8, src: *const u8, n: usize) {
+pub(crate) fn trz_memmove(dst: *mut u8, src: *const u8, n: usize) {
     unsafe {
-        SYSCALL_STUBS.read().unwrap().sol_memmove(dst, src, n);
+        SYSCALL_STUBS.read().unwrap().trz_memmove(dst, src, n);
     }
 }
 
-pub(crate) fn sol_memcmp(s1: *const u8, s2: *const u8, n: usize, result: *mut i32) {
+pub(crate) fn trz_memcmp(s1: *const u8, s2: *const u8, n: usize, result: *mut i32) {
     unsafe {
-        SYSCALL_STUBS.read().unwrap().sol_memcmp(s1, s2, n, result);
+        SYSCALL_STUBS.read().unwrap().trz_memcmp(s1, s2, n, result);
     }
 }
 
-pub(crate) fn sol_memset(s: *mut u8, c: u8, n: usize) {
+pub(crate) fn trz_memset(s: *mut u8, c: u8, n: usize) {
     unsafe {
-        SYSCALL_STUBS.read().unwrap().sol_memset(s, c, n);
+        SYSCALL_STUBS.read().unwrap().trz_memset(s, c, n);
     }
 }
 
-pub(crate) fn sol_get_return_data() -> Option<(Pubkey, Vec<u8>)> {
-    SYSCALL_STUBS.read().unwrap().sol_get_return_data()
+pub(crate) fn trz_get_return_data() -> Option<(Pubkey, Vec<u8>)> {
+    SYSCALL_STUBS.read().unwrap().trz_get_return_data()
 }
 
-pub(crate) fn sol_set_return_data(data: &[u8]) {
-    SYSCALL_STUBS.read().unwrap().sol_set_return_data(data)
+pub(crate) fn trz_set_return_data(data: &[u8]) {
+    SYSCALL_STUBS.read().unwrap().trz_set_return_data(data)
 }
 
-pub(crate) fn sol_log_data(data: &[&[u8]]) {
-    SYSCALL_STUBS.read().unwrap().sol_log_data(data)
+pub(crate) fn trz_log_data(data: &[&[u8]]) {
+    SYSCALL_STUBS.read().unwrap().trz_log_data(data)
 }
 
-pub(crate) fn sol_get_processed_sibling_instruction(index: usize) -> Option<Instruction> {
+pub(crate) fn trz_get_processed_sibling_instruction(index: usize) -> Option<Instruction> {
     SYSCALL_STUBS
         .read()
         .unwrap()
-        .sol_get_processed_sibling_instruction(index)
+        .trz_get_processed_sibling_instruction(index)
 }
 
-pub(crate) fn sol_get_stack_height() -> u64 {
-    SYSCALL_STUBS.read().unwrap().sol_get_stack_height()
+pub(crate) fn trz_get_stack_height() -> u64 {
+    SYSCALL_STUBS.read().unwrap().trz_get_stack_height()
 }
 
-pub(crate) fn sol_get_epoch_rewards_sysvar(var_addr: *mut u8) -> u64 {
+pub(crate) fn trz_get_epoch_rewards_sysvar(var_addr: *mut u8) -> u64 {
     SYSCALL_STUBS
         .read()
         .unwrap()
-        .sol_get_epoch_rewards_sysvar(var_addr)
+        .trz_get_epoch_rewards_sysvar(var_addr)
 }
 
 /// Check that two regions do not overlap.

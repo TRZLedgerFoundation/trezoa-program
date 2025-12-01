@@ -140,7 +140,7 @@ pub fn hashv(vals: &[&[u8]]) -> Hash {
     {
         let mut hash_result = [0; HASH_BYTES];
         unsafe {
-            crate::syscalls::sol_blake3(
+            crate::syscalls::trz_blake3(
                 vals as *const _ as *const u8,
                 vals.len() as u64,
                 &mut hash_result as *mut _ as *mut u8,

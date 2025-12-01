@@ -667,7 +667,7 @@ impl CompiledInstruction {
 }
 
 /// Use to query and convey information about the sibling instruction components
-/// when calling the `sol_get_processed_sibling_instruction` syscall.
+/// when calling the `trz_get_processed_sibling_instruction` syscall.
 #[repr(C)]
 #[derive(Default, Debug, Clone, Copy, Eq, PartialEq)]
 pub struct ProcessedSiblingInstruction {
@@ -696,7 +696,7 @@ pub fn get_processed_sibling_instruction(index: usize) -> Option<Instruction> {
         let mut program_id = Pubkey::default();
 
         if 1 == unsafe {
-            crate::syscalls::sol_get_processed_sibling_instruction(
+            crate::syscalls::trz_get_processed_sibling_instruction(
                 index as u64,
                 &mut meta,
                 &mut program_id,
@@ -710,7 +710,7 @@ pub fn get_processed_sibling_instruction(index: usize) -> Option<Instruction> {
             accounts.resize_with(meta.accounts_len as usize, AccountMeta::default);
 
             let _ = unsafe {
-                crate::syscalls::sol_get_processed_sibling_instruction(
+                crate::syscalls::trz_get_processed_sibling_instruction(
                     index as u64,
                     &mut meta,
                     &mut program_id,
@@ -726,7 +726,7 @@ pub fn get_processed_sibling_instruction(index: usize) -> Option<Instruction> {
     }
 
     #[cfg(not(target_os = "trezoa"))]
-    crate::program_stubs::sol_get_processed_sibling_instruction(index)
+    crate::program_stubs::trz_get_processed_sibling_instruction(index)
 }
 
 // Stack height when processing transaction-level instructions
@@ -738,11 +738,11 @@ pub const TRANSACTION_LEVEL_STACK_HEIGHT: usize = 1;
 pub fn get_stack_height() -> usize {
     #[cfg(target_os = "trezoa")]
     unsafe {
-        crate::syscalls::sol_get_stack_height() as usize
+        crate::syscalls::trz_get_stack_height() as usize
     }
 
     #[cfg(not(target_os = "trezoa"))]
     {
-        crate::program_stubs::sol_get_stack_height() as usize
+        crate::program_stubs::trz_get_stack_height() as usize
     }
 }
