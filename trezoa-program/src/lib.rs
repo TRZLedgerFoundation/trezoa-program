@@ -184,7 +184,7 @@
 //! [`Keypair`]: https://docs.rs/trezoa-sdk/latest/trezoa_sdk/signer/keypair/struct.Keypair.html
 //! [SHA-256]: https://en.wikipedia.org/wiki/SHA-2
 //! [`Trz`]: native_token::Trz
-//! [_lamports_]: https://trezoa.io/docs/intro#what-are-sols
+//! [_lamports_]: https://trezoa.io/docs/intro#what-are-trzs
 //!
 //! # Serialization
 //!

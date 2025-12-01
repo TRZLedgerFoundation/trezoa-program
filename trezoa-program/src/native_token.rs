@@ -6,7 +6,7 @@
 pub const LAMPORTS_PER_TRZ: u64 = 1_000_000_000;
 
 /// Approximately convert fractional native tokens (lamports) into native tokens (TRZ)
-pub fn lamports_to_sol(lamports: u64) -> f64 {
+pub fn lamports_to_trz(lamports: u64) -> f64 {
     lamports as f64 / LAMPORTS_PER_TRZ as f64
 }
 
