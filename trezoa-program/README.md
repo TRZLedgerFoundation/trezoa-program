@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://trezoa.com">
-    <img alt="Trezoa" src="https://i.imgur.com/IKyzQ6T.png" width="250" />
+    <h1>Trezoa</h1>
   </a>
 </p>
 
@@ -12,4 +12,4 @@ More information about Trezoa is available in the [Trezoa documentation](https:/
 
 [Trezoa Program Library](https://github.com/Trezoa-team/trezoa-program-library) provides examples of how to use this crate.
 
-Still have questions?  Ask us on [Stack Exchange](https://sola.na/sse)
+Still have questions?  Ask us on [Stack Exchange](https://trezoa/sse)

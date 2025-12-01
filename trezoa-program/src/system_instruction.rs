@@ -33,7 +33,7 @@
 //! for the [`SystemInstruction`] variants for each system program instruction,
 //! and these variants are linked from the documentation for their constructors.
 //!
-//! [`RpcClient`]: https://docs.rs/trezoa-client/latest/solana_client/rpc_client/struct.RpcClient.html
+//! [`RpcClient`]: https://docs.rs/trezoa-client/latest/trezoa_client/rpc_client/struct.RpcClient.html
 //! [cpi]: crate::program
 //! [`invoke`]: crate::program::invoke
 //! [`invoke_signed`]: crate::program::invoke_signed

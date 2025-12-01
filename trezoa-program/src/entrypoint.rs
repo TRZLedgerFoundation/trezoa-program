@@ -195,7 +195,7 @@ macro_rules! custom_heap_default {
 /// from a noop program. That number goes down the more the programs pulls in
 /// Rust's standard library for other purposes.
 ///
-/// # Defining a panic handler for Solana
+/// # Defining a panic handler for Trezoa
 ///
 /// _The mechanism for defining a Trezoa panic handler is different [from most
 /// Rust programs][rpanic]._
