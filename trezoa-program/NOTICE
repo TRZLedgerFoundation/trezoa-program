@@ -1,10 +1,43 @@
+NOTICE
+
 Trezoa Program
-Migrated from solana-program v1.18.26
+Copyright 2025 TRZ Ledger Foundation
 
-Original source:
-https://crates.io/crates/solana-program
+This product includes software originally developed by the Solana Foundation.
+Original work: solana-program v1.18.26
+Original source: https://crates.io/crates/solana-program
+Original license: Apache License 2.0
 
-This crate was renamed and adapted for the Trezoa Blockchain ecosystem.
-Licensed under Apache 2.0 — same as the original.
-All original copyrights © belong to their respective authors.
-Modifications © 2025 TRZ Ledger Foundation.
+This software has been modified and adapted for the Trezoa Blockchain ecosystem.
+All modifications are licensed under the Apache License 2.0.
+
+THIRD-PARTY DEPENDENCIES
+
+This software contains dependencies from various open source projects.
+Each dependency retains its original copyright and license terms.
+See Cargo.toml for the complete list of dependencies.
+
+Notable dependencies include:
+- Blake3 cryptographic hash function
+- Borsh binary serialization format
+- Various cryptographic libraries for elliptic curve operations
+
+ATTRIBUTION
+
+Original Solana Program codebase:
+Copyright (c) 2021 Solana Foundation
+
+Trezoa modifications and adaptations:
+Copyright (c) 2025 TRZ Ledger Foundation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
