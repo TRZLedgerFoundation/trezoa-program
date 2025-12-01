@@ -1,0 +1,10 @@
+Trezoa Program
+Migrated from solana-program v1.18.26
+
+Original source:
+https://crates.io/crates/solana-program
+
+This crate was renamed and adapted for the Trezoa Blockchain ecosystem.
+Licensed under Apache 2.0 — same as the original.
+All original copyrights © belong to their respective authors.
+Modifications © 2025 TRZ Ledger Foundation.
