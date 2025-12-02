@@ -877,7 +877,7 @@ mod tests {
         let message = Message::new(&instructions, Some(&id1));
         assert_eq!(
             message.hash(),
-            Hash::from_str("7VWCF4quo2CcWQFNUayZiorxpiR5ix8YzLebrXKf3fMF").unwrap()
+            Hash::from_str("8T3MLTSvqwgwG5gkZXEZxNo5UEuFNKZZxRjfkAL3tEYp").unwrap()
         )
     }
 }
