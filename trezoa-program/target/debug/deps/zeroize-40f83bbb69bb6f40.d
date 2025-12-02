@@ -1,0 +1,7 @@
+/Users/sterlingcore/Trezoa-program/trezoa-program/target/debug/deps/zeroize-40f83bbb69bb6f40.d: /Users/sterlingcore/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zeroize-1.3.0/src/lib.rs
+
+/Users/sterlingcore/Trezoa-program/trezoa-program/target/debug/deps/libzeroize-40f83bbb69bb6f40.rlib: /Users/sterlingcore/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zeroize-1.3.0/src/lib.rs
+
+/Users/sterlingcore/Trezoa-program/trezoa-program/target/debug/deps/libzeroize-40f83bbb69bb6f40.rmeta: /Users/sterlingcore/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zeroize-1.3.0/src/lib.rs
+
+/Users/sterlingcore/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zeroize-1.3.0/src/lib.rs:
