@@ -3,9 +3,9 @@ NOTICE
 Trezoa Program
 Copyright 2025 TRZ Ledger Foundation
 
-This product includes software originally developed by the Solana Foundation.
-Original work: solana-program v1.18.26
-Original source: https://crates.io/crates/solana-program
+This product includes software originally developed by the TRZ Ledger Foundation.
+Original work: trezoa-program v1.18.26
+Original source: https://crates.io/crates/trezoa-program
 Original license: Apache License 2.0
 
 This software has been modified and adapted for the Trezoa Blockchain ecosystem.
@@ -24,8 +24,8 @@ Notable dependencies include:
 
 ATTRIBUTION
 
-Original Solana Program codebase:
-Copyright (c) 2021 Solana Foundation
+Original Trezoa Program codebase:
+Copyright (c) 2021 TRZ Ledger Foundation
 
 Trezoa modifications and adaptations:
 Copyright (c) 2025 TRZ Ledger Foundation

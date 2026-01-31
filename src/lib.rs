@@ -205,7 +205,7 @@
 //! The three serialization formats in use in Trezoa are:
 //!
 //! - __[Borsh]__, a compact and well-specified format developed by the [NEAR]
-//!   project, suitable for use in protocol definitions and for archival storage.
+//!   trezoa, suitable for use in protocol definitions and for archival storage.
 //!   It has a [Rust implementation][brust] and a [JavaScript implementation][bjs]
 //!   and is recommended for all purposes.
 //!
